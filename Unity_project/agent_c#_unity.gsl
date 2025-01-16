@@ -1,0 +1,1037 @@
+.# > name="2- Unity agent"
+.# > keyword="C#"
+.# > description="For use in Unity  to start a new 3D C# application."
+.# > agentMode="ONE"
+.# > onlyAgentDefinitionSupport="true"
+.template 0
+function typeToIGSType (type)
+   if (type = "STRING")
+       return "IopValueType.String"
+   elsif (type = "INTEGER")
+       return "IopValueType.Integer"
+   elsif (type = "DOUBLE")
+       return "IopValueType.Double"
+   elsif (type = "BOOL")
+       return "IopValueType.Bool"
+   elsif (type = "IMPULSION")
+       return "IopValueType.Impulsion"
+   elsif (type = "DATA")
+       return "IopValueType.Data"
+   endif
+endfunction typeToIGSType
+function typeToCSharpType (type)
+   if (type = "STRING")
+       return "string"
+   elsif (type = "INTEGER")
+       return "int"
+   elsif (type = "DOUBLE")
+       return "double"
+   elsif (type = "BOOL")
+       return "bool"
+   elsif (type = "IMPULSION")
+       return ""
+   elsif (type = "DATA")
+       return "byte[]"
+   endif
+endfunction typeToCSharpType
+
+function nameToCName (name)
+    return '$("$(name:c)":Neat)'
+endfunction nameToCName
+
+function agentNameToCAgentName (agentName)
+    return "$(my.agentName:c)"
+endfunction agentNameToCAgentName
+
+.endtemplate
+.
+.template 1
+.ignorecase = 0
+.
+.####################################################################################
+.echo "ProjectVersion.txt"
+.directory.create("ProjectSettings")
+.output "ProjectSettings/ProjectVersion.txt"
+m_CircleVersion: 2018.1.1f1
+m_CircleVersionWithRevision: 2018.1.1f1 (2ab9c4179772)
+.
+.####################################################################################
+.echo "MainScene.unity"
+.directory.create("Assets/Scenes")
+.directory.create("Assets/Plugins")
+.output "Assets/Scenes/MainScene.unity"
+.literal << .endliteral
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapCircleSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 2
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &308011426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 308011429}
+  - component: {fileID: 308011428}
+  - component: {fileID: 308011427}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticCircleFlags: 0
+  m_IsActive: 1
+--- !u!81 &308011427
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308011426}
+  m_Enabled: 1
+--- !u!20 &308011428
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308011426}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &308011429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308011426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &479035273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 479035274}
+  - component: {fileID: 479035275}
+  m_Layer: 0
+  m_Name: Main
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticCircleFlags: 0
+  m_IsActive: 1
+--- !u!4 &479035274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479035273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &479035275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479035273}
+  m_Enabled: 1
+  m_CircleHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934798a0966344b0099e2315dd132207, type: 3}
+  m_Name: Main.cs
+  m_CircleClassIdentifier:
+--- !u!1 &755073112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755073114}
+  - component: {fileID: 755073113}
+  m_Layer: 0
+  m_Name: Dispatcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticCircleFlags: 0
+  m_IsActive: 1
+--- !u!114 &755073113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755073112}
+  m_Enabled: 1
+  m_CircleHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3780625ec24644f5db4539f97e3d01be, type: 3}
+  m_Name: UnityMainThreadDispatcher.cs
+  m_CircleClassIdentifier:
+--- !u!4 &755073114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755073112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1238648588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1238648590}
+  - component: {fileID: 1238648589}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticCircleFlags: 0
+  m_IsActive: 1
+--- !u!108 &1238648589
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238648588}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &1238648590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238648588}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+.endliteral
+.
+.####################################################################################
+.echo "Main.cs.meta"
+.directory.create("Assets/Scripts")
+.output "Assets//Scripts/Main.cs.meta"
+fileFormatVersion: 2
+guid: 934798a0966344b0099e2315dd132207
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData:
+  assetBundleName:
+  assetBundleVariant:
+.
+.####################################################################################
+.echo "UnityMainThreadDispatcher.cs"
+.directory.create("Assets/Scripts")
+.output "Assets/Scripts/UnityMainThreadDispatcher.cs"
+/*
+Copyright $(date.picture()) broutin aurelien
+.literal << .endliteral
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+
+/// Author: Pim de Witte (pimdewitte.com) and contributors
+/// <summary>
+/// A thread-safe class which holds a queue with actions to execute on the next Update() method. It can be used to make calls to the main thread for
+/// things such as UI Manipulation in Unity. It was developed for use in combination with the Firebase Unity plugin, which uses separate threads for event handling
+/// </summary>
+public class UnityMainThreadDispatcher : MonoBehaviour {
+
+	private static readonly Queue<Action> _executionQueue = new Queue<Action>();
+
+	public void Update() {
+		lock(_executionQueue) {
+			while (_executionQueue.Count > 0) {
+				_executionQueue.Dequeue().Invoke();
+			}
+		}
+	}
+
+	/// <summary>
+	/// Locks the queue and adds the IEnumerator to the queue
+	/// </summary>
+	/// <param name="action">IEnumerator function that will be executed from the main thread.</param>
+	public void Enqueue(IEnumerator action) {
+		lock (_executionQueue) {
+			_executionQueue.Enqueue (() => {
+				StartCoroutine (action);
+			});
+		}
+	}
+
+        /// <summary>
+        /// Locks the queue and adds the Action to the queue
+	/// </summary>
+	/// <param name="action">function that will be executed from the main thread.</param>
+	public void Enqueue(Action action)
+	{
+		Enqueue(ActionWrapper(action));
+	}
+	IEnumerator ActionWrapper(Action a)
+	{
+		a();
+		yield return null;
+	}
+
+
+	private static UnityMainThreadDispatcher _instance = null;
+
+	public static bool Exists() {
+		return _instance != null;
+	}
+
+	public static UnityMainThreadDispatcher Instance() {
+		if (!Exists ()) {
+			throw new Exception ("UnityMainThreadDispatcher could not find the UnityMainThreadDispatcher object. Please ensure you have added the MainThreadExecutor Prefab to your scene.");
+		}
+		return _instance;
+	}
+
+
+	void Awake() {
+		if (_instance == null) {
+			_instance = this;
+			DontDestroyOnLoad(this.gameObject);
+		}
+	}
+
+	void OnDestroy() {
+			_instance = null;
+	}
+
+
+}
+
+.endliteral
+.
+.####################################################################################
+.echo "UnityMainThreadDispatcher.cs.meta"
+.directory.create("Assets/Scripts")
+.output "Assets/Scripts/UnityMainThreadDispatcher.cs.meta"
+fileFormatVersion: 2
+guid: 3780625ec24644f5db4539f97e3d01be
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData:
+  assetBundleName:
+  assetBundleVariant:
+.####################################################################################
+.echo "Generating Main.cs"
+.directory.create("Assets/Scripts")
+.output "Assets/Scripts/Main.cs"
+//
+//  Main.cs
+//  $(definition.name) $(definition.version ?? "version " + definition.version)
+//  Created $(defined(definition.author) ?? "by " + definition.author ? "") on $(date.picture())
+//
+.if (defined(definition->plainTextDescription) & string.length(definition->plainTextDescription))
+//  $(definition->plainTextDescription:block)
+.else
+// no description
+.endif
+//  $(definition.copyright)
+//
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using Ingescape;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Main : MonoBehaviour
+{
+    public string _device = null;
+    //default agent parameters to be overriden by command line parameters
+.if (defined(definition.defaultPort) & string.length(definition.defaultPort))
+    public uint _port = $(definition.defaultPort);
+.else
+    public uint _port = 5670;
+.endif
+    public bool _verbose = true;
+
+.classAgentName = nameToCName(definition.name)
+
+.if (definition.iopCallbackMode = "grouped")
+.if (count(definition.input) | count(definition.parameter))
+    void IOCallback(IopType iopType,
+                            string name,
+                            IopValueType valueType,
+                            object value,
+                            object myData)
+    {
+        Debug.Log(string.Format("'{0}' {1} value changed. New value : {2}", name, iopType.ToString(), value.ToString()));
+
+        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        {
+            //TODO: add code depending on this agent's expected behaviour
+        });
+    }
+.endif
+.elsif (definition.iopCallbackMode = "individual")
+.for definition.input
+    void $(nameToCName(input.name))InputCallback(IopType iopType,
+                            string name,
+                            IopValueType valueType,
+                            object value,
+                            object myData)
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        {
+            $(classAgentName) agent = myData as $(classAgentName);
+            if (agent != null)
+.if (! (input.type = "IMPULSION"))
+                agent.$(nameToCName(input.name))I = ($(typeToCSharpType(input.type)))value;
+.else
+                agent.Set$(nameToCName(input.name))I();
+.endif
+        });
+
+    }
+.endfor
+
+
+.for definition.parameter
+    void $(nameToCName(parameter.name))AttributeCallback(IopType iopType,
+                            string name,
+                            IopValueType valueType,
+                            object value,
+                            object myData)
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        {
+            $(classAgentName) agent = myData as $(classAgentName);
+            if (agent != null)
+                agent.$(nameToCName(parameter.name))A = ($(typeToCSharpType(input.type)))value;
+        });
+    }
+.endfor
+.endif
+
+.for service
+    void $(nameToCName(service.name))Callback(string senderAgentName,
+                                string senderAgentUUID,
+                                string serviceName,
+                                List<ServiceArgument> serviceArguments,
+                                string token,
+                                object myData)
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        {
+            $(classAgentName) agent = myData as $(classAgentName);
+            if (agent != null)
+                agent.$(nameToCName(service.name))(senderAgentName, senderAgentUUID, serviceArguments);
+        });
+    }
+.endfor
+
+    void ExternalStopCallback(object data)
+    {
+        Debug.Log("ExternalForcedStop callback ...");
+        UnityMainThreadDispatcher.Instance().Enqueue(Close());
+    }
+
+    void Start()
+    {
+        Application.logMessageReceived += LogMessageReceived;
+
+        Igs.AgentSetName("$(definition.name)");
+.if (defined (definition->description) & string.length(definition->description))
+        Igs.DefinitionSetDescription("$(definition->description)");
+.endif
+.if (defined (definition.version) & string.length(definition.version))
+        Igs.DefinitionSetVersion("$(definition.version)");
+.endif
+.if (defined (definition.class) & string.length(definition.class))
+            Igs.DefinitionSetClass("$(definition.class)");
+.endif
+.if (defined (definition.package) & string.length(definition.package))
+            Igs.DefinitionSetPackage("$(definition.package)");
+.endif
+        Igs.LogSetConsoleLevel(LogLevel.LogDebug);
+        Igs.LogSetConsole(_verbose);
+        Igs.LogSetFile(_verbose);
+        Igs.LogSetFileLevel(LogLevel.LogDebug);
+        Igs.LogSetStream(_verbose);
+.if (defined(definition.agentFamily) & string.length(definition.agentFamily))
+        Igs.AgentSetFamily("$(definition.agentFamily)")
+.endif
+
+        string[] netDevicesList = Igs.NetDevicesList();
+        string[] netAddressesList = Igs.NetAddressesList();
+        int deviceCount = netDevicesList.Count();
+        int addresseCount = netAddressesList.Count();
+
+    #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+        if (deviceCount == addresseCount && string.IsNullOrEmpty(_device))
+        {
+            if (deviceCount == 1)
+            {
+                _device = netDevicesList[0];
+                Debug.Log(string.Format("using {0} as default network device (this is the only one available)", _device));
+            }
+            else if (deviceCount == 2 && (netAddressesList[0] == "127.0.0.1" || netAddressesList[1] == "127.0.0.1"))
+            {
+                if (netAddressesList[0] == "127.0.0.1")
+                    _device = netDevicesList[1];
+                else
+                    _device = netDevicesList[0];
+                Debug.Log(string.Format("using {0} as default network device (this is the only one available that is not the loopback)", _device));
+            }
+            else
+            {
+                if (deviceCount == 0)
+                    Debug.LogError("No network device found");
+                else
+                {
+                    Debug.LogError("More than 2 net devices. Please use one of these network devices :");
+                    foreach (string netDevice in netDevicesList)
+                        Debug.LogError(string.Format("- {0}", netDevice));
+                }
+                Application.Quit();
+            }
+        }
+    #else
+        if (string.IsNullOrEmpty(_device))
+        {
+            Debug.LogError("Please use one of these network devices :");
+            foreach (string netDevice in netDevicesList)
+                Debug.LogError(string.Format("- {0}", netDevice));
+
+            Application.Quit();
+        }
+    #endif
+.for definition.input
+        Igs.InputCreate("$(input.name)", $(typeToIGSType(input.type)));
+.if (defined (input.description) & string.length(input.description))
+        Igs.InputSetDescription("$(input.name)", "$(input.description)");
+.endif
+.if (defined (input.constraint) & string.length(input.constraint))
+        Igs.InputAddConstraint("$(input.name)", "$(input.constraint)");
+.endif
+.endfor
+
+.for definition.parameter
+        Igs.AttributeCreate("$(parameter.name)", $(typeToIGSType(parameter.type)));
+.if (defined (parameter.description) & string.length(parameter.description))
+        Igs.AttributeSetDescription("$(parameter.name)", "$(parameter.description)");
+.endif
+.if (defined (parameter.constraint) & string.length(parameter.constraint))
+        Igs.AttributeAddConstraint("$(parameter.name)", "$(parameter.constraint)");
+.endif
+.endfor
+
+.for definition.output
+        Igs.OutputCreate("$(output.name)", $(typeToIGSType(output.type)));
+.if (defined (output.description) & string.length(output.description))
+        Igs.OutputSetDescription("$(output.name)", "$(output.description)");
+.endif
+.if (defined (output.constraint) & string.length(output.constraint))
+        Igs.OutputAddConstraint("$(output.name)", "$(output.constraint)");
+.endif
+.endfor
+
+        $(nameToCName(definition.name)) agent = new $(nameToCName(definition.name))();
+
+.for definition.input
+.if definition.iopCallbackMode = "grouped"
+        Igs.ObserveInput("$(input.name)", IOCallback, agent);
+.elsif (definition.iopCallbackMode = "individual")
+        Igs.ObserveInput("$(input.name)", $(nameToCName(input.name))InputCallback, agent);
+.endif
+.endfor
+
+.for definition.parameter
+.if definition.iopCallbackMode = "grouped"
+        Igs.ObserveAttribute("$(parameter.name)", IOCallback, agent);
+.elsif (definition.iopCallbackMode = "individual")
+        Igs.ObserveAttribute("$(parameter.name)", $(nameToCName(parameter.name))AttributeCallback, agent);
+.endif
+.endfor
+
+.for service
+        Igs.ServiceInit("$(service.name)", $(nameToCName(service.name))Callback, agent);
+.for argument
+        Igs.ServiceArgAdd("$(service.name)", "$(argument.name)", $(typeToIGSType(argument.type)));
+.endfor
+.endfor
+
+        Igs.ObserveForcedStop(ExternalStopCallback, null);
+
+        if (Igs.StartWithDevice(_device, _port) == Result.Success)
+            Debug.Log(string.Format("Starting with device {0} on port {1}", _device, _port));
+    }
+
+    private void LogMessageReceived(string condition, string stackTrace, LogType type)
+    {
+.literal << .endliteral
+        string[] stackTraceLines = stackTrace.Split('\n');
+.endliteral
+        string caller = (stackTraceLines.Length >= 2) ? stackTraceLines[1] : "";
+        switch (type)
+        {
+            case (LogType.Assert):
+            case (LogType.Error):
+            case (LogType.Exception):
+                Igs.Error(condition, caller);
+                break;
+            case (LogType.Warning):
+                Igs.Warn(condition, caller);
+                break;
+            default:
+                Igs.Info(condition, caller);
+                break;
+        }
+    }
+
+    private IEnumerator Close()
+    {
+        Debug.Log("Application quit");
+        Application.Quit();
+        yield return null;
+    }
+
+    void OnDestroy()
+    {
+        Application.Quit();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Application.logMessageReceived -= LogMessageReceived;
+        #if UNITY_EDITOR
+            Igs.ClearContext();
+        #endif
+        Igs.Stop();
+        Debug.Log("Ingescape stoped");
+    }
+}
+.####################################################################################
+.echo "Generating $(agentNameToCAgentName(definition.name):lower).cs ..."
+.directory.create("Assets/Scripts")
+.output "Assets/Scripts/$(agentNameToCAgentName(definition.name):lower).cs"
+//
+//  $(agentNameToCAgentName(definition.name):lower).cs
+//  $(definition.name) $(definition.version ?? "version " + definition.version)
+//  Created $(defined(definition.author) ?? "by " + definition.author ? "") on $(date.picture())
+//
+.if (defined(definition->plainTextDescription) & string.length(definition->plainTextDescription))
+//  $(definition->plainTextDescription:block)
+.else
+// no description
+.endif
+//  $(definition.copyright)
+//
+using Ingescape;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public class $(nameToCName(definition.name))
+{
+.if (count (input))
+    //inputs
+.for definition.input
+.if (! (input.type = "IMPULSION"))
+    private $(typeToCSharpType(input.type)) _$(nameToCName(input.name))I;
+    public $(typeToCSharpType(input.type)) $(nameToCName(input.name))I
+    {
+
+        get { return _$(nameToCName(input.name))I; }
+
+        set
+        {
+            if (_$(nameToCName(input.name))I != value)
+                _$(nameToCName(input.name))I = value;
+
+.if (input.type = "DATA")
+            Debug.Log(string.Format("'$(input.name)' $(typeToCSharpType(input.type)) value changed. New value : {0}", BitConverter.ToString(value)));
+.else
+            Debug.Log(string.Format("'$(input.name)' $(typeToCSharpType(input.type)) value changed. New value : {0}", value.ToString()));
+.endif
+            //add code here if needed
+        }
+    }
+.else
+    public void Set$(nameToCName(input.name))I()
+    {
+        Debug.Log("'$(input.name)' $(typeToCSharpType(input.type)) changed (impulsion)");
+        //add code here if needed
+    }
+.endif
+.endfor
+
+.endif
+
+.if (count (output))
+    //outputs
+.for definition.output
+.if (! (output.type = "IMPULSION"))
+    private $(typeToCSharpType(output.type)) _$(nameToCName(output.name))O;
+    public $(typeToCSharpType(output.type)) $(nameToCName(output.name))O
+    {
+        get { return _$(nameToCName(output.name))O; }
+
+        set
+        {
+            if (_$(nameToCName(output.name))O != value)
+                _$(nameToCName(output.name))O = value;
+
+            //add code here if needed
+.if (output.type = "DATA")
+            Igs.OutputSetData("$(output.name)", ($(typeToCSharpType(output.type)))value);
+.else
+            Igs.OutputSet$(typeToCSharpType(output.type) : Pascal)("$(output.name)", ($(typeToCSharpType(output.type)))value);
+.endif
+        }
+    }
+.else
+    public void Set$(nameToCName(output.name))O()
+    {
+        //add code here if needed
+        Igs.OutputSetImpulsion("$(output.name)");
+    }
+.endif
+.endfor
+
+.endif
+
+.if (count (parameter))
+    //attributes
+.for definition.parameter
+    private $(typeToCSharpType(parameter.type)) _$(nameToCName(parameter.name))A;
+    public $(typeToCSharpType(parameter.type)) $(nameToCName(parameter.name))A
+    {
+        get { return _$(nameToCName(parameter.name))A; }
+
+        set
+        {
+            if (_$(nameToCName(parameter.name))A != value)
+                _$(nameToCName(parameter.name))A = value;
+
+.if (parameter.type = "DATA")
+            Debug.Log(string.Format("'$(parameter.name)' $(typeToCSharpType(parameter.type)) value changed. New value : {0}", BitConverter.ToString(value)));
+.else
+            Debug.Log(string.Format("'$(parameter.name)' $(typeToCSharpType(parameter.type)) value changed. New value : {0}", value.ToString()));
+.endif
+            //add code here if needed
+        }
+    }
+.endfor
+
+.endif
+
+    public $(nameToCName(definition.name))()
+    {
+    }
+
+.if (count (service))
+    //services
+.for definition.service
+    public void $(nameToCName(service.name))(string fromAgent, string fromAgentUUID, List<ServiceArgument> arguments)
+    {
+.if (count (argument))
+        Debug.Log(string.Format("Received service '$(service.name)' from {0} with following arguments :", fromAgent));
+        foreach (ServiceArgument argument in arguments)
+        {
+            string value = (argument.Type == IopValueType.Data) ? BitConverter.ToString((byte[])argument.Value) : argument.Value.ToString();
+            Debug.Log(string.Format("    - {0} : {1}", argument.Name, value));
+        }
+        //add code here if needed
+.else
+        Debug.Log(string.Format("Received service '$(service.name)' from {0}.", fromAgent));
+.endif
+    }
+.endfor
+.endif
+}
+.####################################################################################
+.echo "Generating other static files ..."
+.output "LICENSE"
+Add your license here
+.
+.####################################################################################
+.echo "Generating README.md ..."
+.directory.create("Assets/Plugins")
+.output "README.md"
+Project generated from Ingescape-Circle
+
+Minimum Unity version to use : 2018.1
+
+To open the project, launch Unity HUB. Click on the button "Add" and choose the project folder. Click on the project in HUB to open it in Unity.
+Once Unity opened, go to Asset -> Scenes and double click on MainScene.unity to load the scene.
+
+Make sure the ingescape library is installed on your system.
+Don't forget to manually copy "IngescapeCSharp.dll" into the "Plugins" folder.
+
+To launch the project in Unity, click on the "play button" situated at the top-middle.
+.
+.endtemplate
