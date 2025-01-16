@@ -104,6 +104,21 @@ public class MapController : MonoBehaviour
         GenerateMap();
     }
 
+    [ProButton]
+    public void LoadFromFile(string name)
+    {
+        // On véfifie que le fichier existe
+        string path = Application.dataPath + "/Matrix/" + name + ".txt";
+        if (!System.IO.File.Exists(path))
+        {
+            Debug.LogError("Le fichier n'existe pas");
+            return;
+        }
+
+        map = TilesToMatrixConverter.instance.ReadMatrixFile(name);
+        GenerateMap();
+    }
+
     /// <summary>
     /// Méthode pour s'assurer que la map reste dans les limites de l'écran
     /// </summary>
