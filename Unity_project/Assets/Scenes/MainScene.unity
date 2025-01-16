@@ -9514,8 +9514,8 @@ MonoBehaviour:
   wallSprite: {fileID: 968870718340485358, guid: 4cea91653bf0968448ad22420077ffff, type: 3}
   fruitSprite: {fileID: 6423243585649133432, guid: 5e31ab2a2b65219498224ec8158659a4, type: 3}
   emptySprite: {fileID: 1090873838729692659, guid: 315da965eabdf62449786dbbf5bf06ef, type: 3}
-  width: 14
-  height: 17
+  width: 10
+  height: 10
   isRandom: 1
 --- !u!1 &1519063897
 GameObject:

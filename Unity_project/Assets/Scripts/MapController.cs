@@ -88,7 +88,7 @@ public class MapController : MonoBehaviour
                 }
                 else
                 {
-                    // On ne peut mettre des murs que sur les lignes paires
+                    // On ne peut mettre des murs que sur les colonnes paires
                     if (x % 2 == 0)
                     {
                         map[x, y] = UnityEngine.Random.Range(0, 2);
@@ -99,9 +99,9 @@ public class MapController : MonoBehaviour
                     }
                 }
             }
-
-            GenerateMap();
         }
+
+        GenerateMap();
     }
 
     /// <summary>
@@ -161,6 +161,8 @@ public class MapController : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
+        transform.position = Vector3.zero;
     }
 
     public bool IsWall(int x, int y)
