@@ -22,10 +22,16 @@ public class TilesToMatrixConverter : MonoBehaviour
         }
     }
 
+    public float GetTileSize()
+    {
+        return tilemap.cellSize.x;
+    }
+
     private void Start()
     {
         int[,] map = Convert(tilemap);
         ShowMatrix(map);
+        MapController.instance.SetMap(map);
     }
 
     [ProButton]

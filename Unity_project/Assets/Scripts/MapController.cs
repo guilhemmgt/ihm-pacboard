@@ -17,12 +17,17 @@ public class MapController : MonoBehaviour
     public SpriteRenderer emptySprite;
 
     private float step = 1.0f;
-    private GridLayoutGroup gridLayoutGroup;
 
     [Header("Map Settings")]
     [SerializeField] private int width = 28;
     [SerializeField] private int height = 31;
     [SerializeField] private bool isRandom = true;
+    [SerializeField] private bool shouldGenerate = false;
+
+    // Matrice représentant la carte
+    public int[,] map = new int[10, 10];
+
+    private float tileSize;
 
     private void Awake()
     {
@@ -36,12 +41,13 @@ public class MapController : MonoBehaviour
         }
     }
 
-    // Matrice représentant la carte
-    public int[,] map = new int[10, 10];
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        tileSize = TilesToMatrixConverter.instance.GetTileSize();
+
+        if (!shouldGenerate) return;
+
         map = new int[10, 10]
         {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -182,6 +188,10 @@ public class MapController : MonoBehaviour
 
     public bool IsWall(int x, int y)
     {
+        if ( x >= map.GetLength(0) - 1 || x < 0 || y >= map.GetLength(1) || y < 0)
+        {
+            return true;
+        }
         return map[x, y] == 1;
     }
 
@@ -211,6 +221,23 @@ public class MapController : MonoBehaviour
             possiblePaths.Add(new Vector2(x, y - 1));
         }
         return possiblePaths;
+    }
+
+    /// <summary>
+    /// Obtenir la position d'une tuile en fonction de ses coordonnées
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    public Vector3 GetRealTilePos(int x, int y)
+    {
+        Vector3 offset = new Vector3(height * step / 2, width * step / 2 + 3*step/4, 0);
+        return new Vector3(x * step, y * step, 0) - offset;
+    }
+
+    public void SetMap(int[,] newMap)
+    {
+        map = newMap;
     }
 
 
