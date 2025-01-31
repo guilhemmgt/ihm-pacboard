@@ -57,4 +57,9 @@ public class GameManager : MonoBehaviour
             Debug.Log("Turn Starts");
         }
     }
+
+    public float GetTimeBetweenPlays()
+    {
+        return timeBetweenPlays;
+    }
 }

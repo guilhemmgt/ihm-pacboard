@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,7 +76,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!MapController.instance.IsWall(x,y))
         {
-            transform.position = MapController.instance.GetRealTilePos(x, y);
+            transform.DOMove(MapController.instance.GetRealTilePos(x, y), GameManager.instance.GetTimeBetweenPlays()/2);
+            // transform.position = MapController.instance.GetRealTilePos(x, y);
+
             pos = new Vector2Int(x, y);
             Debug.Log("Player moved to " + pos);
         }
@@ -83,5 +86,16 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Can't move to " + x + ", " + y);
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out ICollectible component))
+        {
+            component.Collect(this.gameObject, () =>
+            {
+                Debug.Log("Player collected a collectible");
+            });
+        }        
     }
 }

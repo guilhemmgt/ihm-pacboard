@@ -235,6 +235,28 @@ public class MapController : MonoBehaviour
         return new Vector3(x * step, y * step, 0) - offset;
     }
 
+    /// <summary>
+    /// Retourne une liste de toutes les positions des tuiles étant des chemins
+    /// </summary>
+    /// <returns></returns>
+    public List<Vector3> GetAllPathPosition()
+    {
+        List<Vector3> pathPos = new List<Vector3>();
+
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                if (!IsWall(x, y))
+                {
+                    pathPos.Add(GetRealTilePos(x, y));
+                }
+            }
+        }
+
+        return pathPos;
+    }
+
     public void SetMap(int[,] newMap)
     {
         map = newMap;
