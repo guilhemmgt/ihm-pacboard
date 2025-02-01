@@ -200,25 +200,31 @@ public class MapController : MonoBehaviour
         return map[x, y] == 2;
     }
 
-    public List<Vector2> GetPossiblePaths(int x, int y)
+    /// <summary>
+    /// Retourne les chemins possibles adjacents à partir d'une position donnée
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    public List<Vector2Int> GetPossiblePaths(int x, int y)
     {
-        List<Vector2> possiblePaths = new List<Vector2>();
+        List<Vector2Int> possiblePaths = new List<Vector2Int>();
 
         if (!IsWall(x + 1, y))
         {
-            possiblePaths.Add(new Vector2(x + 1, y));
+            possiblePaths.Add(new Vector2Int(x + 1, y));
         }
         if (!IsWall(x - 1, y))
         {
-            possiblePaths.Add(new Vector2(x - 1, y));
+            possiblePaths.Add(new Vector2Int(x - 1, y));
         }
         if (!IsWall(x, y + 1))
         {
-            possiblePaths.Add(new Vector2(x, y + 1));
+            possiblePaths.Add(new Vector2Int(x, y + 1));
         }
         if (!IsWall(x, y - 1))
         {
-            possiblePaths.Add(new Vector2(x, y - 1));
+            possiblePaths.Add(new Vector2Int(x, y - 1));
         }
         return possiblePaths;
     }

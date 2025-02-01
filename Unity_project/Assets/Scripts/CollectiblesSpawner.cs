@@ -8,12 +8,12 @@ public class CollectiblesSpawner : MonoBehaviour
 
     public static CollectiblesSpawner instance;
 
-    public int nbSpawned;
+    public int currentSpawnedNumber;
 
     private void Awake()
     {
         instance = this;
-        nbSpawned = 0;
+        currentSpawnedNumber = 0;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,7 +26,7 @@ public class CollectiblesSpawner : MonoBehaviour
     {
         List<Vector3> yellowBubblePositions = MapController.instance.GetAllPathPosition();
 
-        nbSpawned = yellowBubblePositions.Count;
+        currentSpawnedNumber = yellowBubblePositions.Count;
 
         foreach (Vector3 position in yellowBubblePositions)
         {
@@ -37,8 +37,8 @@ public class CollectiblesSpawner : MonoBehaviour
 
     public void OnCollectibleCollected()
     {
-        nbSpawned--;
-        if (nbSpawned <= 0)
+        currentSpawnedNumber--;
+        if (currentSpawnedNumber <= 0)
         {
             SpawnYellowBubbles();
         }

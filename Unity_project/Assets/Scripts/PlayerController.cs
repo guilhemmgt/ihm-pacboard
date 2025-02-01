@@ -2,14 +2,21 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Script contrôlant le joueur
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
+    [Tooltip("Position actuelle du joueur")]
     public Vector2Int pos;
 
+    [Tooltip("Position de départ du joueur")]
     public Vector2Int startPosition = new Vector2Int(1, 1);
 
+    [Tooltip("Dernière direction du joueur (0: haut, 1: droite, 2: bas, 3: gauche)")]
     public int lastDirection = 0;
 
+    [Tooltip("Flèche indiquant la direction du joueur")]
     [SerializeField] private Image arrowObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +31,14 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
+    {
+        HandleInput();
+    }
+
+    /// <summary>
+    /// Gère les entrées clavier, change la direction de la flèche en conséquence
+    /// </summary>
+    private void HandleInput()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -44,6 +59,9 @@ public class PlayerController : MonoBehaviour
         {
             lastDirection = 3;
             ChangeArrowRotation(Quaternion.Euler(0, 0, 90));
+        } else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.instance.PauseGame();
         }
     }
 
@@ -97,5 +115,13 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Player collected a collectible");
             });
         }        
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player died");
+        Destroy(this.gameObject);
+
+        GameManager.instance.GameOver();
     }
 }

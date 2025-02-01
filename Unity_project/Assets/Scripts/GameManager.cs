@@ -4,6 +4,15 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameState
+    {
+        PLAYING,
+        PAUSED,
+        GAME_OVER
+    }
+
+    public GameState gameState = GameState.PAUSED;
+
     public static GameManager instance;
 
     private IEnumerator coroutine;
@@ -43,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        gameState = GameState.PLAYING;
         coroutine = StartGameCoroutine();
         StartCoroutine(coroutine);
     }
@@ -55,6 +65,33 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenPlays);
             OnTurnStart.Invoke();
             Debug.Log("Turn Starts");
+        }
+    }
+
+    public void GameOver()
+    {
+        gameState = GameState.GAME_OVER;
+        StopCoroutine(coroutine);
+        Debug.Log("Game Over");
+    }
+
+    public void PauseGame()
+    {
+        switch (gameState)
+        {
+            case GameState.PLAYING:
+                gameState = GameState.PAUSED;
+                StopCoroutine(coroutine);
+                Debug.Log("Game Paused");
+                break;
+            case GameState.PAUSED:
+                gameState = GameState.PLAYING;
+                StartCoroutine(coroutine);
+                Debug.Log("Game Resumed");
+                break;
+            case GameState.GAME_OVER:
+                Debug.Log("Nothing to pause");
+                break;
         }
     }
 

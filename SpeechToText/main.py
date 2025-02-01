@@ -7,6 +7,9 @@
 #  Created by Ingenuity i/o on 2025/01/08
 #
 #  Responsable de la conversion parole vers texte
+# To run : python ./main.py
+# Parameters : port, agent_name, device below
+# renseigner également le modèle vosk
 
 import sys
 import os
