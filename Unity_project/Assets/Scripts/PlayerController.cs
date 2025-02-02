@@ -40,7 +40,14 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        lastDirection = Game.GetInstance().DirectionI;
+        ChangeArrowRotation (Quaternion.Euler (0, 0,
+            lastDirection == 0 ? 0 :
+            lastDirection == 1 ? -90 :
+            lastDirection == 2 ? 180 :
+            90));
+
+		if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             lastDirection = 0;
             ChangeArrowRotation(Quaternion.Euler(0, 0, 0));
@@ -113,6 +120,7 @@ public class PlayerController : MonoBehaviour
             component.Collect(this.gameObject, () =>
             {
                 Debug.Log("Player collected a collectible");
+                Game.GetInstance ().SetCoin_CollectedO ();
             });
         }        
     }

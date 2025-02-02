@@ -73,7 +73,8 @@ public class GameManager : MonoBehaviour
         gameState = GameState.GAME_OVER;
         StopCoroutine(coroutine);
         Debug.Log("Game Over");
-    }
+        Game.GetInstance ().SetGame_LostO ();
+	}
 
     public void PauseGame()
     {

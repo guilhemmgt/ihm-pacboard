@@ -480,6 +480,15 @@
                 },
                 {
                     "agent": {
+                        "instances": [
+                            {
+                                "commandLine": "D:\\Logiciels\\Unity\\6000.0.23f1\\Editor\\Unity.exe",
+                                "hostname": "LAPTOP-P0HF58CG",
+                                "ip": "192.168.1.112",
+                                "isAttachedToCircle": false,
+                                "uuid": "46e0b68f-aeb8-4d21-a4fe-4fc64f02deb7"
+                            }
+                        ]
                     },
                     "class": "ad3e0a4f-ebd9-4437-8897-f0668b1a9a01",
                     "comment": "",
@@ -490,8 +499,66 @@
                     "width": 250,
                     "x": 734.0765264415413,
                     "y": 242.285987599078
+                },
+                {
+                    "data": {
+                        "data_decoder": "BINARY",
+                        "msg_type": "",
+                        "proto_file_path": "",
+                        "string_decoder": "PLAIN_TEXT"
+                    },
+                    "height": 112,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.observer",
+                    "uuid": "97069fdd-373c-4f2b-a468-191956062a61",
+                    "width": 270,
+                    "x": 1007.7469990102801,
+                    "y": -0.6662342779594042
+                },
+                {
+                    "data": {
+                        "entries": [
+                            "1"
+                        ],
+                        "value_type": "INTEGER"
+                    },
+                    "height": 107,
+                    "name": "",
+                    "tool": "com.ingescape.circle.tool.writer",
+                    "uuid": "82b92907-e2d1-45b0-bc62-e77cd6be80db",
+                    "width": 256,
+                    "x": 447.87803985008816,
+                    "y": 25.00245515277294
                 }
             ],
+            "links": {
+                "others": [
+                    {
+                        "destination": "22d3e550-aec8-467a-8a2d-007796609b7c",
+                        "destinationIO": {
+                            "name": "direction",
+                            "type": "INPUT"
+                        },
+                        "source": "82b92907-e2d1-45b0-bc62-e77cd6be80db",
+                        "sourceIO": {
+                            "name": "value",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "97069fdd-373c-4f2b-a468-191956062a61",
+                        "destinationIO": {
+                            "name": "wildcard",
+                            "type": "INPUT"
+                        },
+                        "source": "22d3e550-aec8-467a-8a2d-007796609b7c",
+                        "sourceIO": {
+                            "name": "coin_collected",
+                            "type": "OUTPUT"
+                        }
+                    }
+                ]
+            },
             "name": "Main view"
         }
     ]
