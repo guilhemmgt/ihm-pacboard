@@ -2,89 +2,12 @@
     "extensions": {
         "eventsTimeline": {
             "events": [
-                {
-                    "conditions": [
-                    ],
-                    "effects": [
-                        {
-                            "agent": "Whiteboard",
-                            "io": "chatMessage",
-                            "ioValueType": "STRING",
-                            "order": 1,
-                            "type": "IOP",
-                            "value": ""
-                        }
-                    ],
-                    "name": "SpamMessage",
-                    "orderId": 0,
-                    "triggering": {
-                        "duration": 0,
-                        "random": false,
-                        "randomMax": 0,
-                        "randomMin": 0,
-                        "repeat": true,
-                        "repeatInterval": 1000,
-                        "temporality": "PERMANENT"
-                    }
-                },
-                {
-                    "conditions": [
-                    ],
-                    "effects": [
-                    ],
-                    "name": "Update",
-                    "orderId": 1,
-                    "triggering": {
-                        "duration": 0,
-                        "random": false,
-                        "randomMax": 0,
-                        "randomMin": 0,
-                        "repeat": true,
-                        "repeatInterval": 1000,
-                        "temporality": "PERMANENT"
-                    }
-                },
-                {
-                    "conditions": [
-                        {
-                            "agent": "Update_Controller",
-                            "operator": "EQUAL",
-                            "order": 1,
-                            "output": "impulse",
-                            "type": "VALUE",
-                            "value": null
-                        }
-                    ],
-                    "effects": [
-                        {
-                            "arguments": [
-                            ],
-                            "order": 1,
-                            "type": "SERVICE"
-                        }
-                    ],
-                    "name": "Clear_Event",
-                    "orderId": 2,
-                    "triggering": {
-                        "duration": 0,
-                        "random": false,
-                        "randomMax": 0,
-                        "randomMin": 0,
-                        "repeat": false,
-                        "repeatInterval": 0,
-                        "temporality": "IMMEDIATE"
-                    }
-                }
             ],
             "patterns": [
             ],
             "timelines": [
                 {
                     "eventInstances": [
-                        {
-                            "refId": 0,
-                            "startTime": 460
-                        }
                     ],
                     "name": "Timeline_1",
                     "order": 0,
@@ -487,25 +410,45 @@
                 "icon": -1,
                 "package": "",
                 "plugin": "ingescape_class",
-                "uuid": "118ec52d-5aba-5ee0-baa7-ae34d567f092",
+                "uuid": "caa3e055-a332-4bff-9cfd-fbfdfeaffc4c",
                 "version": ""
             },
             {
-                "className": "Update_Controller",
+                "className": "Game",
                 "color": 0,
                 "definition": {
+                    "inputs": [
+                        {
+                            "constraint": "[0,3]",
+                            "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">0=up, 1=left, 2=down, 3=right</p></body></html>",
+                            "name": "direction",
+                            "type": "INTEGER"
+                        }
+                    ],
                     "outputs": [
                         {
-                            "name": "impulse",
+                            "name": "coin_collected",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "ghost_killed",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "game_won",
+                            "type": "IMPULSION"
+                        },
+                        {
+                            "name": "game_lost",
                             "type": "IMPULSION"
                         }
                     ]
                 },
-                "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">gère le temps global</p></body></html>",
+                "description": "",
                 "icon": -1,
                 "package": "",
                 "plugin": "ingescape_class",
-                "uuid": "a7a39722-e628-53ba-adef-2a91acedba89",
+                "uuid": "ad3e0a4f-ebd9-4437-8897-f0668b1a9a01",
                 "version": ""
             },
             {
@@ -523,35 +466,11 @@
                         }
                     ]
                 },
-                "description": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Asap'; font-size:13px; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13px;\">Responsable de la conversion parole vers texte</span></p></body></html>",
-                "icon": -1,
-                "package": "",
-                "plugin": "ingescape_class",
-                "uuid": "ca70ad12-e8cd-4dc6-801a-a63dd6dd98a9",
-                "version": ""
-            },
-            {
-                "className": "Game",
-                "color": 0,
-                "definition": {
-                    "inputs": [
-                        {
-                            "name": "bar",
-                            "type": "IMPULSION"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "name": "foo",
-                            "type": "IMPULSION"
-                        }
-                    ]
-                },
                 "description": "",
                 "icon": -1,
                 "package": "",
                 "plugin": "ingescape_class",
-                "uuid": "f623f37f-bd6e-4628-8943-15e13f308537",
+                "uuid": "7b239662-d860-4d99-8b2b-580ff78efe68",
                 "version": ""
             }
         ]
@@ -560,264 +479,165 @@
         {
             "children": [
                 {
-                    "data": {
-                        "arguments": [
+                    "agent": {
+                        "instances": [
                             {
-                                "text": ""
-                            },
-                            {
-                                "x": "0"
-                            },
-                            {
-                                "y": "0"
-                            },
-                            {
-                                "color": ""
+                                "commandLine": "D:\\Logiciels\\Unity\\6000.0.23f1\\Editor\\Unity.exe",
+                                "hostname": "LAPTOP-P0HF58CG",
+                                "ip": "192.168.1.112",
+                                "isAttachedToCircle": false,
+                                "mac": "AC:D5:64:AE:FE:E7",
+                                "uuid": "46e0b68f-aeb8-4d21-a4fe-4fc64f02deb7"
                             }
-                        ],
-                        "selectedAgentUuid": "1d098113-4ed6-4ed8-a703-56d20a1e386a",
-                        "selectedService": "addText"
+                        ]
                     },
-                    "height": 188,
-                    "name": "",
-                    "tool": "com.ingescape.circle.tool.servicecaller",
-                    "uuid": "c6932463-d36b-442e-b484-dc8452670123",
-                    "width": 246,
-                    "x": -328.0415469695472,
-                    "y": 521.1526131953478
+                    "class": "ad3e0a4f-ebd9-4437-8897-f0668b1a9a01",
+                    "comment": "",
+                    "height": 158,
+                    "name": "Game",
+                    "simulationTime": 5000,
+                    "uuid": "22d3e550-aec8-467a-8a2d-007796609b7c",
+                    "width": 250,
+                    "x": 651.3916508280495,
+                    "y": 107.92542505912456
                 },
                 {
                     "agent": {
                         "instances": [
                             {
-                                "commandLine": "C:\\Users\\miche\\Desktop\\N7\\IHM\\Whiteboard.win64\\Whiteboard\\Whiteboard.exe",
-                                "hostname": "LAPTOP-ADO11J2D",
-                                "ip": "192.168.190.8",
-                                "isAttachedToCircle": false,
-                                "uuid": "17cf2976-619f-440e-819e-77c38d9d445e"
-                            },
-                            {
-                                "commandLine": "D:\\T�l�chargements\\Whiteboard.win64(1)\\Whiteboard\\Whiteboard.exe",
+                                "commandLine": "D:\\Mon_Dossier\\Cours\\3A\\S9-IHM\\Projet\\SpeechToText\\.venv\\Scripts\\python.exe .\\main.py",
                                 "hostname": "LAPTOP-P0HF58CG",
-                                "ip": "192.168.190.120",
+                                "ip": "192.168.1.112",
                                 "isAttachedToCircle": false,
-                                "uuid": "7c078196-f73c-4fe1-8c1b-292393d43bf8"
-                            },
-                            {
-                                "commandLine": "C:\\N7\\3A\\IHM\\Whiteboard\\Whiteboard.exe",
-                                "hostname": "MSI",
-                                "ip": "172.22.227.208",
-                                "isAttachedToCircle": false,
-                                "mac": "88:D8:2E:E9:A9:44",
-                                "uuid": "dc013c32-0f89-43d9-a6e7-157e74ec8585"
+                                "mac": "AC:D5:64:AE:FE:E7",
+                                "uuid": "91eac70e-57fd-4b3e-b84b-0d50c66643ed"
                             }
                         ]
                     },
-                    "class": "118ec52d-5aba-5ee0-baa7-ae34d567f092",
+                    "class": "7b239662-d860-4d99-8b2b-580ff78efe68",
                     "comment": "",
-                    "height": 202,
-                    "name": "Whiteboard",
+                    "height": 114,
+                    "name": "SpeechToTextController",
                     "simulationTime": 5000,
-                    "uuid": "1d098113-4ed6-4ed8-a703-56d20a1e386a",
+                    "uuid": "1fa377ee-f9ae-4a61-9f5c-fdb0f13d4c8e",
                     "width": 250,
-                    "x": 619.6291791019843,
-                    "y": 633.7322058911765
+                    "x": 324.32296574308896,
+                    "y": 107.03470633585147
                 },
                 {
                     "data": {
                         "entries": [
-                            "Bienvenue dans le HagiBoard"
-                        ],
-                        "value_type": "STRING"
-                    },
-                    "height": 107,
-                    "name": "",
-                    "tool": "com.ingescape.circle.tool.writer",
-                    "uuid": "b9af77aa-5c08-4ca9-bfe6-79fee627f90c",
-                    "width": 256,
-                    "x": -53.17338817499365,
-                    "y": 558.0655837689394
-                },
-                {
-                    "data": {
-                        "entries": [
-                            "#b3ffff"
+                            "Pacgum récupéré !"
                         ],
                         "value_type": "STRING"
                     },
                     "height": 79,
                     "name": "",
                     "tool": "com.ingescape.circle.tool.writer",
-                    "uuid": "8ae035d4-6f7c-4295-9148-860b99957771",
+                    "uuid": "0b61ae48-c609-4219-9ed7-4ca58b08022f",
                     "width": 256,
-                    "x": 289.78407692307735,
-                    "y": 538.825526844708
+                    "x": 994.3645063128465,
+                    "y": -14.494082231389996
                 },
                 {
                     "data": {
-                        "arguments": [
-                            {
-                                "elementId": "0"
-                            }
+                        "entries": [
+                            "Partie perdue !"
                         ],
-                        "selectedAgentUuid": "1d098113-4ed6-4ed8-a703-56d20a1e386a",
-                        "selectedService": "remove"
+                        "value_type": "STRING"
                     },
-                    "height": 149,
+                    "height": 79,
                     "name": "",
-                    "tool": "com.ingescape.circle.tool.servicecaller",
-                    "uuid": "767b086f-aa90-4f0f-9f61-81c0b59b90b9",
-                    "width": 246,
-                    "x": -262.8817145627987,
-                    "y": 1136.3179667949853
+                    "tool": "com.ingescape.circle.tool.writer",
+                    "uuid": "91158a1c-1a7e-44ad-b08e-bd135bb65a5f",
+                    "width": 256,
+                    "x": 989.4061203742226,
+                    "y": 84.12270477013436
                 },
                 {
                     "agent": {
                         "instances": [
                             {
-                                "commandLine": "D:\\Mon_Dossier\\Prog\\Unity\\#Builds\\IHM\\test\\IHM.exe",
+                                "commandLine": "D:\\Mon_Dossier\\Cours\\3A\\S9-IHM\\Projet\\Whiteboard\\Whiteboard.exe",
                                 "hostname": "LAPTOP-P0HF58CG",
-                                "ip": "192.168.190.120",
+                                "ip": "192.168.1.112",
                                 "isAttachedToCircle": false,
-                                "uuid": "c2156483-20f8-4ad8-90e3-efecf52d7f3e"
+                                "mac": "AC:D5:64:AE:FE:E7",
+                                "uuid": "2a881273-342e-4af3-b427-91080b28f883"
+                            },
+                            {
+                                "commandLine": "D:\\Mon_Dossier\\Cours\\3A\\S9-IHM\\Projet\\Whiteboard\\Whiteboard.exe",
+                                "hostname": "LAPTOP-P0HF58CG",
+                                "ip": "192.168.1.100",
+                                "isAttachedToCircle": false,
+                                "uuid": "235c40e9-6d3e-4d7f-8d9f-f94550ebe2f1"
                             }
                         ]
                     },
-                    "class": "f623f37f-bd6e-4628-8943-15e13f308537",
+                    "class": "caa3e055-a332-4bff-9cfd-fbfdfeaffc4c",
                     "comment": "",
-                    "height": 100,
-                    "name": "Game",
+                    "height": 202,
+                    "name": "Whiteboard",
                     "simulationTime": 5000,
-                    "uuid": "d9fb1f61-470b-4753-9e0d-2757e9ea2dd9",
+                    "uuid": "831ffab8-a70b-44ad-8a77-c1aa6cfc24ec",
                     "width": 250,
-                    "x": 6.818996702219657,
-                    "y": 856.3352783137003
-                },
-                {
-                    "data": {
-                        "arguments": [
-                        ],
-                        "selectedAgentUuid": "1d098113-4ed6-4ed8-a703-56d20a1e386a",
-                        "selectedService": "clear"
-                    },
-                    "height": 75,
-                    "name": "",
-                    "tool": "com.ingescape.circle.tool.servicecaller",
-                    "uuid": "642d5d3f-38d3-433f-9dfc-b73b0cd7281f",
-                    "width": 246,
-                    "x": -112.91041195702871,
-                    "y": 982.426223996721
-                },
-                {
-                    "data": {
-                        "arguments": [
-                            {
-                                "url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAMAAzAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAABAAIDBQYEBwj/xAA8EAABAwIEAwQGCgEEAwAAAAABAAIDBBEFEiExBkFREyJhgRQycZGSoQcjM0JDUlOTwdGxFXKC8BY0Yv/EABkBAQEBAQEBAAAAAAAAAAAAAAABAgMEBf/EAB8RAQEAAgIDAQEBAAAAAAAAAAABAhEDIRIxQTITYf/aAAwDAQACEQMRAD8A1DvtG+adfTeyVklfpb2jkLmvBzXangki7SQfBG19FGwuBIdt91GvYCMtmLw5xDt7lTAnkhfRJGbdjd3NEFNR87Ih10gVG6eJh7z7KqrOIqWnm7K9yeY1HvQXQKcCsxVcZ4bRt+vJv+Vm5XLF9ImDyODSyZovq4gJuGmwbexsi0uvqqmg4jwquNqatgc933M9j7laNcxxGQg23sQbI0kuldAIqxkgUbppSG6B2bxsiHeN1xs+tqZo9TGCM9tnabexNpJJS7M94yvkADA0DKMtwg77o3UUj8uUjVx0aOpT7231KB10iU26NvfyQQ3z1Wfkw5B5i5/hS30CYyNzYcrzcnvE+J1KkBzAO6i6DlIQT0FFNQOiJSQC6cmS6HtLE25BQVdbHS0/aSEhxGgKbP8AXRI9kbS6Q2aFnMTxw5nR02g/Mq2vxWeruL5WrIY3jphc6CiILvvSkXt7FKulrjOPGlZ35C+Xkz+1jazE62qkLpZXjNyGy4nyOle57nlzydSSgC4EKaEhc924J9qdkNszhYdVL23ZRMcLZnG2oQc7t49g17TqBsQmhB22U9xuvVd1Fj+K4c9r6SvmiI0ABDh7iCFyzwOjyncFtwuYjVXSPRMD+k2sjkbFi9PHUxfqwtyvHiRsfkvT6Gtp6+kjqqWQSQyjMxw6L5ua0k93lqvTfouxpsTpMMmkFnnNHfr080HpZQQG3OxQLWuGV3qnQrSBkDcrowLN0sOijdF2ZaYvVdIHEH2W0RHbRizCHjazjY2ThK38Vrmdbi496BOF6lgJ7rWuNuuoU2vkFCcko0d7HA6hOY1zdHPcel+aCQJyjLWutm2Bun+IA80BTSNUhmvqG28CiggCBCckdlFMO6SKSAeV1keJJnOxB0V+6wCwWwtfRZDiduXEr/mYD/lSjNYzO+mwyolj9cMOU9CsBM/MbDz8Vvcdt/pVRcaZFkaCg9JkYw6lym9Na3XBEGZSDvyXbHBF6K6d8zGua4NEf3nexaRvDlMxwDLkgakm+qr3cNVT2zSxNLsp0Cnni3/HJSSHM+4Fhl0HRM7wPdABU5hkjkdHK2zhpsnMpy6PtLXvoiePxCyaQvDb6ErTUPDcb2NkqWusRcC6j4VwJ9VWNmmYRCzUXG63MkLGjujurlycmno4uGXuxisS4fiEDjStyuGtr7qjoTLSTslY4tljdmB8QvQ6hgsSBtqstj1AKeo7Vl+zkF0487eqnNxSdx7NRTekUcMx++wH5KYrLfR1iPpvDzIHG76R3ZG55cvlZaleh5KARQSCsQCxrvugHqEW6aAuPtRSQFOCYEUD0kLpII0kklFNQRKCBHZY/iN+bFJB+VrQtisZxE3LicviApRmeJJOzwaoP5gG+82VPwu3PPm/I1WvE7c2ESn8rm/5CreEm/aO8LLnlenbjm61NGM1iOYV3StMbQWgeKosPPeLei0EGrQvJdvoYqrE+HIsQrxIyMNDm98g7q0oOGaCniYwwh5YN3K1pY9iutzQVuZXTFklVD42RjIxmQDYAWXLK1W74u0dYrhq4g1yxW5VNOzVVWMwiWiLCL21V1Ut7pXBO0OZY6hXG9s5zyip4Kxeow+tbQscGNlkBIt6x0Fl64NNLBeN0dOWcURi2jfrB8l7G3VoPUL2Yvn8mOoKSSS25kkkkEQk4IIhWAooBFBEkkkoppQRKCAOBLTl3tosNiksslZKJfWacq3ax3EUPY4nIQNJQHBSrGbxuF8+G1Mcdi7JmF+dlQ8MSOjLncnGx8FrHMbJE9jge9tbl1WaoIHYfilRQyjRwzsK45eq9OEnVjSUhy1J6OWgpHWtdZaF5a4X1ylaOmdnaCvNY9cu19FIMospnOuQq+mfezVYAXaFYliMuyuuuCqOYeasnhobrZVldNHCx8jyA0bkpSWfVdO24KrHjvZVyYjj/auLKFrnkaaBOw81Mr7ytIA3JV8dRm5y06KnazHIKmx7sbmu8V6NSkvponu3LBcLDQNzVLGW7xuAt3E3JExvQWXp43l5/R6SSS7POKQSSClQUUEkBG6cmhG6sESSXj1ukpfagUESgdkCVBxXT54IahoN2GzvNXwUdRA2ohfE4AhwsgwLDZ4PTXRcvEdIz0+mxKMODsmWUHbw/wC+Ks67D5qWRzHscWg7gclBJaroJqZ8mVxb3CfDZcc5Xq4c5qxU10hp2MmjFxzAT6biCZou2N2UbMA1T8KlZPaOVtjaxBXdXYMHxsfEwua03ewDRwXHcl1XaS38oqTipgN5IJgL27gza+Sv6LiKmqg0Nc5pOzXixKrqP0emcZ6eFsc+wys28k2pa4xjNG5ri7NdMvH41j567XlXW+jxukJvpcBZ99G/FzIcUrHxRkfVRRt0B6uPNW9RGJsHZJu8b3XNSwsnGV5NxyaVmXS+Pl0pv9EpoY8rHPdLmvcGwt4BXkVIIKZgOhI2VhT0EMIzBmZ3V26iqTvm0TO7axwmPpBgDQ7G2BzQ60biL+S1x9qxeASn/wAja0a/VuH+Fs7i+hXq4/y+fy/okU0ua31nAe0o3uNNfYujkKQSuigSKCSAhG6aldA3bRJI+PVBAChzsg9zWgkm1lwS4xStBJlBtooLBILNVnGFBTPLXSNDuh3VRV/SJTMBEEEsniAAPmqrbVMUc0TmShozC2p1WErIewqZYr6NKqKvjmpnuRE8dBn/AKVHV43WVTrukcy+4Zp801s3pfz2pq2OVpAEnrN6FavD587Ab+5eTF8r52vDi+Rp0O5K3GB4kHxtJcLdLrz82D18HJ8bQNYR6jfG9lVYs2zmubt4J0de29mm7uQUFfK+SJrn2FnagdFwj19LDDntnoJoCNWtuFVU0vYS5zfu6ELrwl5FQWfdJsD4KLEmClneXNsCLWK1pZHd6e3JoHFcFTUZg4i+i4TWSsbHEx5zH/53TaqZ7YHPfrmaR5qfXPPLpTVWNVGF1fpdMWiUd0Zhfdck3G2NSnWpDP8AY238qqxeTPVZAT3Aq87r2YTp87O7q3n4ixSodd9ZL5OsuOfE66d15qypkLfVc6RxI9mui5AkVvTC3puJcdpmgR4vWi2wdLnt8V1bUHH2O08jTPUR1TeYljF/e0D+VkgUQmh6Jh30lTioIxKjidTuOhprhzfJxsfktpg/EeF4x3aGpaZTr2L+6+w52P8AF/avCL9FJDPJDK18cj2OYczXMdYg9Qmh9EXTbrHcDcXHF4/QcSePTmAlkhsO3aPD8w5jnuOdteXAblQVdXjUUTQWd476aqixbi1tCxjpnBrneq0G5PkqatxFlFhrKiQ3cWjI0n1jZYarqZKuYzTvLpXb9AOg8FnHuNX20lbxrWzucIWNa07F5/hU0+M10xuahzfCPuhVyK3pk980jz3nXPMnmo8xvqUbJtlQSU5pTERpqgmgkMM8co3Y4FaWojFBUx1NP/61SM7Ryaeiyp8QtRgVUKzDfQn6yQG7AebeYXLlnW3bis9LplS18Uc0NrtNnt6eKdOaqJplIzR31PNV76KaJmejJyneM7j2f0urDcWJvTVAGbbUb+S8+vr043XVT4e+XtmyU5AHMONgV2V4M7WmomzubtHHd3zUBwu7u0gLLXuA8bLsbTTPjAllaI/yxi11HeXHXavoI3SVHakWbHsFxYxWvmqAOTQbaWV3UyxU8DmRtDLBZPEKgRB07uZ7gK1jN1x5MsfijxMBtc8A6gAH2rhdupHPdK98jjcuNyob5nL2SajwZXdOaiQi0JFGQARsiEkAskR0RKIQTUdTNSVEdRTuLJonBzCOoK92w2vbiOHU1bTEdnPGH2PI8x5G48l4Gr3BONsRwGkdR0sQlhLy9uf7twLj3i/mpVVeIV0la5gcbRQtDGN8tSVyWTToQ3oNU9WTULd0LJ1kgkqhW0QITk07oGkI8kXbJoIuopwBAIzWvzUlNPJTStkieWPbsRzUZ1Cbvvolm4eu20wfiKjma2KucIJQfWOx8+SuavDKbEmdrDI0Sbsmj1Pn1C8z5fyp6eeenOamnfERyY4hcrwz3Hec3Wq3MTsRo7xywulA0zM1BXayrq3sJZTOaGjd5yrFw8TYtGB2k4lA/UaCfkjNxPXS7tiH/ErH8smpy4NHWSNERqcSma2JuzW8/wC1j8Vr3YhPnDcsY0YzoFDUVE9ZJ2lRI55GwOw9iiNgN9V1xw17cs+TYP7gsExg5pG7t05osF0cx2Q3RKQ3UQbIIoFUK6RQCSBE2CZkz87W0RdsUhspVB/rJ172TJOSTDqiJAdUTsmc0QVQ4FIoc05QBMcLap6DtQgTSjoUwaG3JOCBEkctEQ8HTZLdNLVQ8OCRc3mPmo9kd0Di87NCaQSnAIqBoCdyQROyoaUQgN0UBCSQSQNS5pFDZA126PIexNOpCJ3UqhJqE1m6c7ZNG6IfzTh6yZsi06oJDskChdLmgRSCJ2TUAdpqkE4AHdNOh8EDwEUGlFA22qNkuaKBBIpJIAkkkgDRYIopKhBJJJA0phKeVFzQEIpBFQA7KNynMM1vsZf2z/SjMU36Mv7Z/pAL3si3dEQzD8GX9spdlN+jL+2f6QOSSEUx/Bl/bKc2KU/gy/tlA1AqQwzX+xl+ApdjL+jL8BQNag4J/ZSg/YyfAUeylP4MvwFBGCE7kkYJgdYZfgKcIpbfZSfAUACSf2Uv6UnwFLspf0pPgKBiSf2Mv6UnwFLsZf0pPgKBiCkMMtj9VJ8BXRSU82s5jDhF3uzlY60nhsqIGwyuyZYZDn9SzD3vZ1TLFdTX1oyW9IAjccgaHAMvvl6JxpZpaYSspHMYw5ZH3N3uOoOU67dBZS3SyOJJTOp5APs5PgKZ2Mt/spPgKoidsogNF0uhltpDJ8BTOwmvrDL8BUQwA2RsVKIJtLQyfAUDHINDDL+27+kV/9k="
-                            },
-                            {
-                                "x": "0"
-                            },
-                            {
-                                "y": "0"
-                            }
-                        ],
-                        "selectedAgentUuid": "1d098113-4ed6-4ed8-a703-56d20a1e386a",
-                        "selectedService": "addImageFromUrl"
-                    },
-                    "height": 188,
-                    "name": "",
-                    "tool": "com.ingescape.circle.tool.servicecaller",
-                    "uuid": "9ec2981c-b00a-465a-9b41-f103ce90e875",
-                    "width": 246,
-                    "x": 393.7004008669778,
-                    "y": 929.3384046921093
-                },
-                {
-                    "data": {
-                        "arguments": [
-                            {
-                                "text": "test"
-                            },
-                            {
-                                "x": "0"
-                            },
-                            {
-                                "y": "0"
-                            },
-                            {
-                                "color": ""
-                            }
-                        ],
-                        "selectedAgentUuid": "1d098113-4ed6-4ed8-a703-56d20a1e386a",
-                        "selectedService": "addText"
-                    },
-                    "height": 188,
-                    "name": "",
-                    "tool": "com.ingescape.circle.tool.servicecaller",
-                    "uuid": "10104022-8c35-4ff6-a3fb-319f36850597",
-                    "width": 246,
-                    "x": -423.819489150412,
-                    "y": 877.036278859873
-                },
-                {
-                    "agent": {
-                        "instances": [
-                            {
-                                "commandLine": "c:\\N7\\3A\\IHM\\Projet\\SpeechToText\\.conda\\python.exe .\\main.py",
-                                "hostname": "MSI",
-                                "ip": "172.22.227.208",
-                                "isAttachedToCircle": false,
-                                "mac": "88:D8:2E:E9:A9:44",
-                                "uuid": "a8e7fd19-ff04-4a01-a130-84d406f1c9a3"
-                            }
-                        ]
-                    },
-                    "class": "ca70ad12-e8cd-4dc6-801a-a63dd6dd98a9",
-                    "comment": "",
-                    "height": 114,
-                    "name": "SpeechToTextController",
-                    "simulationTime": 5000,
-                    "uuid": "e6ed86bf-f106-4309-876a-aee646cfeb58",
-                    "width": 250,
-                    "x": -59.37090257535681,
-                    "y": 683.7095078323305
+                    "x": 1338.2859488789622,
+                    "y": -59.567354877533035
                 }
             ],
             "links": {
                 "mappings": [
                     {
-                        "from": "Whiteboard",
-                        "fromInput": "chatMessage",
-                        "to": "SpeechToTextController",
-                        "toOutput": "textOutput"
-                    },
-                    {
-                        "from": "Whiteboard",
-                        "fromInput": "title",
+                        "from": "Game",
+                        "fromInput": "direction",
                         "to": "SpeechToTextController",
                         "toOutput": "directionOutput"
                     }
                 ],
                 "others": [
                     {
-                        "destination": "1d098113-4ed6-4ed8-a703-56d20a1e386a",
+                        "destination": "0b61ae48-c609-4219-9ed7-4ca58b08022f",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "22d3e550-aec8-467a-8a2d-007796609b7c",
+                        "sourceIO": {
+                            "name": "coin_collected",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "91158a1c-1a7e-44ad-b08e-bd135bb65a5f",
+                        "destinationIO": {
+                            "name": "trigger",
+                            "type": "INPUT"
+                        },
+                        "source": "22d3e550-aec8-467a-8a2d-007796609b7c",
+                        "sourceIO": {
+                            "name": "game_lost",
+                            "type": "OUTPUT"
+                        }
+                    },
+                    {
+                        "destination": "831ffab8-a70b-44ad-8a77-c1aa6cfc24ec",
                         "destinationIO": {
                             "name": "chatMessage",
                             "type": "INPUT"
                         },
-                        "source": "b9af77aa-5c08-4ca9-bfe6-79fee627f90c",
+                        "source": "0b61ae48-c609-4219-9ed7-4ca58b08022f",
                         "sourceIO": {
                             "name": "value",
                             "type": "OUTPUT"
                         }
                     },
                     {
-                        "destination": "1d098113-4ed6-4ed8-a703-56d20a1e386a",
+                        "destination": "831ffab8-a70b-44ad-8a77-c1aa6cfc24ec",
                         "destinationIO": {
-                            "name": "backgroundColor",
+                            "name": "chatMessage",
                             "type": "INPUT"
                         },
-                        "source": "8ae035d4-6f7c-4295-9148-860b99957771",
+                        "source": "91158a1c-1a7e-44ad-b08e-bd135bb65a5f",
                         "sourceIO": {
                             "name": "value",
                             "type": "OUTPUT"
